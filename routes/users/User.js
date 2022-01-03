@@ -30,7 +30,8 @@ router.post("/signup", async (req, res) => {
       communities: [],
       notifications: [],
       friends: [],
-      requests: []
+      requests: [],
+      admin: false
     });
     await User.findOne({ name: newUser.name })
       .then(async profile => {

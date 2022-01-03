@@ -38,6 +38,10 @@ let UserSchema = mongoose.Schema({
     type: Boolean,
     require: true
   },
+  admin: {
+    type: Boolean,
+    require: true
+  },
   gems: {
     type: Number,
     require: true
