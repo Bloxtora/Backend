@@ -1,48 +1,58 @@
 let express = require("express");
 let passport = require("passport");
-let bcrypt = require("bcrypt");
-const jsonwt = require("jsonwebtoken");
-const hcaptcha = require('express-hcaptcha');
 let User = require("../../models/User");
 let Staff = require("../../models/Staff");
 let router = express.Router();
 
 router.post("/promote", passport.authenticate("jwt", { session: false }), (req, res) => {
-  if (req.body.user) {
+  if (req.body.user ** req.body.loginName) {
     if (req.body.rank) {
       if (req.body.discord) {
-        const query = Staff.where({ StaffName: req.user.name });
-        const query2 = User.where({ name: req.body.user });
+        const query3 = User.where({ name: req.body.name });
+        const query2 = User.where({ StaffName: req.body.user });
+        const query = User.where({ name: req.user.name });
         query.findOne(function (err, results) {
           if (err) return handleError(err);
           if (results) {
             if (results.admin == true) {
-              query2.findOne(function (err, results) {
+              query2.findOne(function (err, results2) {
                 if (err) return handleError(err);
                 if (results2) {
                   let newStaff = new Staff({
-                    'GameName': "",
+                    'GameName': req.body.loginName,
                     'StaffName': results2.name,
                     'StaffLevel': req.body.rank,
                     'GroupId': "",
-                    'DiscordId': req.body.discord
+                    'DiscordId': req.body.discord,
+                    'FinishedSem': false,
+                    'SeminarId': null,
+                    'AccActive': true
                   });
                   async function allDone() {
                   await newStaff
                     .save()
                     .then(() => {
+                      query3.findOne(function (err, results3) {
+                        if (err) return handleError(err);
+                        if (results3) {
+                          results3.updateOne(
+                            { $set: { admin: true } },
+                            (err, brote) => {
+                            })
                       res.send("Done")
+                        }
+                      })
                     })
                   } allDone()
                 } else {
-                  res.send('err')
+                  res.send('no results2')
                 }
               })
             } else {
-              res.send("err")
+              res.send("no results admin")
             }
           } else {
-            res.send("err")
+            res.send("no results")
           }
         })
       } else {

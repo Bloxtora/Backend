@@ -1,4 +1,6 @@
 let mongoose = require("mongoose");
+let autoIncrement = require('mongoose-auto-increment');
+
 let StaffSchema = mongoose.Schema({
     _id: {
     type: String,
@@ -9,22 +11,36 @@ let StaffSchema = mongoose.Schema({
     require: true
   },
   StaffName: {
-    type: Array,
+    type: String,
     require: true
   },
   StaffLevel: {
-    type: Array,
+    type: String,
     require: true
   },
   GroupId: {
-    type: Array,
+    type: String,
     require: true
   },
   DiscordId: {
-    type: Array,
+    type: String,
+    require: true
+  },
+  FinishedSem: {
+    type: Boolean,
+    require: true
+  },
+  SeminarId: {
+    type: String,
+    require: true
+  },
+  AccActive: {
+    type: Boolean,
     require: true
   },
 });
 
+autoIncrement.initialize(mongoose.connection);
+StaffSchema.plugin(autoIncrement.plugin, 'staff');
 
 module.exports = Staff = mongoose.model("staff", StaffSchema);
