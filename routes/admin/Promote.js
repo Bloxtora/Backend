@@ -25,7 +25,7 @@ router.post("/promote", passport.authenticate("jwt", { session: false }), (req, 
                     'GroupId': "",
                     'DiscordId': req.body.discord,
                     'FinishedSem': false,
-                    'SeminarId': 0,
+                    'SeminarId': 1,
                     'AccActive': true
                   });
                   async function allDone() {
