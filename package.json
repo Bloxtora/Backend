@@ -16,9 +16,10 @@
     "express-hcaptcha": "0.0.3",
     "http": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.8",
+    "mongoose": "^6.1.4",
+    "mongoose-auto-increment": "^5.0.1",
     "morgan": "^1.10.0",
-    "passport": "^0.5.0",
+    "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6"

@@ -34,10 +34,6 @@ let UserSchema = mongoose.Schema({
     type: Array,
     require: true
   },
-  admin: {
-    type: Boolean,
-    require: true
-  },
   banned: {
     type: Boolean,
     require: true
